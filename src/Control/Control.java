@@ -14,8 +14,10 @@ public class Control {
 	public static JButton diceRoll = new JButton("Jogar dado");
 	public static JLabel diceRollLabel;
 	public static JLabel mouseClickInfo;
-	public final int LARG_DEFAULT = 900;
+	public final int LARG_DEFAULT = 600;
 	public final int ALT_DEFAULT = 720;
+	public static float mouseX;
+	public static float mouseY;
 	
 	public Control() {
 		
@@ -23,7 +25,7 @@ public class Control {
 		frame.setSize(new Dimension(LARG_DEFAULT, ALT_DEFAULT));
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(false);
+		frame.setResizable(true);
 		
 		//Setting up components and event listeners
 		diceRollLabel = new JLabel("Jogue o dado para começar");
@@ -37,9 +39,9 @@ public class Control {
 		gameBoard.addMouseListener(new MouseHandler());
 		
 		//Adding components to main container
-		gameBoard.add(diceRoll);
-		gameBoard.add(diceRollLabel);
-		gameBoard.add(mouseClickInfo);
+		//gameBoard.add(diceRoll);
+		//gameBoard.add(diceRollLabel);
+		//gameBoard.add(mouseClickInfo);
 		frame.add(gameBoard);
 		frame.setVisible(true);
 	}
@@ -49,4 +51,5 @@ public class Control {
 		Control newGame = new Control();
 		
 	}
+
 }

@@ -1,5 +1,7 @@
 package Handlers;
 
+import Control.Control;
+
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 
@@ -12,7 +14,7 @@ public class MouseHandler implements MouseListener{
 	public void mouseClicked(MouseEvent e) {
 		this.x = e.getX();
 		this.y = e.getY();
-		System.out.println("Mouse clicked @ " + this.x + ", " + this.y);		
+		Control.mouseClickInfo.setText("Mouse clicked @ " + this.x + ", " + this.y);
 	}
 
 	@Override
@@ -29,7 +31,6 @@ public class MouseHandler implements MouseListener{
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
-		// TODO Auto-generated method stub
 		
 	}
 

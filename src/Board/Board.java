@@ -1,11 +1,14 @@
 package Board;
 
+import Board.Casas;
+import Control.Control;
 import java.awt.*;
 import java.awt.geom.*;
 import javax.swing.*;
 
 public class Board extends JPanel {
 	
+	public static Casas casas[][] = new Casas[15][15];
 	private double xOrigin = 50;
 	private double yOrigin = 50;
 	private int diceRollVal;
@@ -14,111 +17,125 @@ public class Board extends JPanel {
 	
 	public void paintComponent(Graphics g) {
 		
-		/*super.paintComponent(g);
-		this.setBackground(Color.BLACK);
-		
-		g.setColor(Color.BLUE);
-		g.fillRect(0, 0, 40, 40);
-		
-		g.setColor(Color.RED);
-		g.fillRect(40, 40, 40, 40);*/
-		
 		super.paintComponent(g);
 		this.setBackground(backgroundColor);
 		Graphics2D g2d = (Graphics2D) g;
 		
-		Rectangle2D rtVerde = new Rectangle2D.Double(xOrigin, yOrigin, 240.0, 240.0);
-		g2d.setPaint(Color.GREEN);
-		g2d.fill(rtVerde);
-		
-		Rectangle2D rtAmarelo = new Rectangle2D.Double(xOrigin + 360.0, yOrigin, 240.0, 240.0);
-		g2d.setPaint(Color.YELLOW);
-		g2d.fill(rtAmarelo);
-		
-		Rectangle2D rtVermelho = new Rectangle2D.Double(xOrigin, yOrigin + 360.0, 240.0, 240.0);
-		g2d.setPaint(Color.RED);
-		g2d.fill(rtVermelho);
-		
-		Rectangle2D rtAzul = new Rectangle2D.Double(xOrigin + 360.0, yOrigin + 360.0, 240.0, 240.0);
-		g2d.setPaint(Color.BLUE);
-		g2d.fill(rtAzul);
-		
-		
-		for(int i = 0; i < 4; i++) {
+		for (int i = 0; i < 15; i++) {
 			
-			switch(i) {
-			
-				//Pinta o caminho verde
-				case 0: 
-					double rtVerdeInicioX = xOrigin + 40.0;
-					double rtVerdeInicioY = yOrigin + 240.0;
-					Rectangle2D rtVerdeInicio = new Rectangle2D.Double(rtVerdeInicioX, rtVerdeInicioY, 40, 40);
-					g2d.setPaint(Color.GREEN);
-					g2d.fill(rtVerdeInicio);
+			for(int j = 0; j < 15; j++) {
+				
+				casas[i][j] = new Casas(i, j);
+				float rectX = casas[i][j].getX();
+				float rectY = casas[i][j].getY();
+				
+				Rectangle2D rect = new Rectangle2D.Double(rectX, rectY , 40, 40);
+
+				if(rectX <= 200 && rectY <= 320) {
 					
-					for(int j = 0; j < 5; j++) {
-						
+					if(rectY <= 200) {
 						g2d.setPaint(Color.GREEN);
-						g2d.fill(new Rectangle2D.Double(rtVerdeInicioX + (40*j), rtVerdeInicioY + 40, 40, 40));
+						g2d.fill(rect);
 					}
 					
-					break;
-				
-				//Pinta o caminho amarelo
-				case 1: 
-					double rtAmareloInicioX = xOrigin + 320.0;
-					double rtAmareloInicioY = yOrigin + 40.0;
-					Rectangle2D rtAmareloInicio = new Rectangle2D.Double(rtAmareloInicioX, rtAmareloInicioY, 40, 40);
-					g2d.setPaint(Color.YELLOW);
-					g2d.fill(rtAmareloInicio);
-					
-					for(int j = 0; j < 5; j++) {
-					
-						g2d.setPaint(Color.YELLOW);
-						g2d.fill(new Rectangle2D.Double(rtAmareloInicioX - 40, rtAmareloInicioY + (40*j), 40, 40));
-					}
-					
-					break;
-				
-				//Pinta o caminho vermelho
-				case 2: 
-					double rtVermelhoInicioX = xOrigin + 240.0;
-					double rtVermelhoInicioY = yOrigin + 520.0;
-					Rectangle2D rtVermelhoInicio = new Rectangle2D.Double(rtVermelhoInicioX, rtVermelhoInicioY, 40, 40);
-					g2d.setPaint(Color.RED);
-					g2d.fill(rtVermelhoInicio);
-					
-					for(int j = 0; j < 5; j++) {
+					else {
 						
+						if(rectX == 40 && rectY == 240) {
+							g2d.setPaint(Color.GREEN);
+							g2d.fill(rect);
+						}
+						
+						else if((rectX >= 40 && rectX <= 200) && rectY == 280) {
+							g2d.setPaint(Color.GREEN);
+							g2d.fill(rect);
+						}
+						
+						else {
+							g2d.setPaint(Color.WHITE);
+							g2d.fill(rect);
+						}
+					}
+				}
+				
+				else if(rectX <= 320 && (rectY >= 360 && rectY <= 600)) {
+					
+					if(rectX <= 200) {
 						g2d.setPaint(Color.RED);
-						g2d.fill(new Rectangle2D.Double(rtVermelhoInicioX + 40, rtVermelhoInicioY - (40*j), 40, 40));
+						g2d.fill(rect);	
 					}
 					
-					break;
-					
-				//Pinta o caminho azul
-				case 3: 
-					double rtAzulInicioX = xOrigin + 520.0;
-					double rtAzulInicioY = yOrigin + 320.0;
-					Rectangle2D rtAzulInicio = new Rectangle2D.Double(rtAzulInicioX, rtAzulInicioY, 40, 40);
-					g2d.setPaint(Color.BLUE);
-					g2d.fill(rtAzulInicio);
-					
-					for(int j = 0; j < 5; j++) {
+					else {
 						
-						g2d.setPaint(Color.BLUE);
-						g2d.fill(new Rectangle2D.Double(rtAzulInicioX - (40*j), rtAzulInicioY - 40, 40, 40));
+						if(rectX == 240 && rectY == 520) {
+							g2d.setPaint(Color.RED);
+							g2d.fill(rect);
+						}
+						
+						else if(rectY <= 520 && rectX == 280) {
+							g2d.setPaint(Color.RED);
+							g2d.fill(rect);
+						}
+						
+						else {
+							g2d.setPaint(Color.WHITE);
+							g2d.fill(rect);
+						}
+					}
+				}
+				
+				else if(rectX >= 200 && rectY <= 200) {
+					
+					if(rectX >= 360) {
+						g2d.setPaint(Color.YELLOW);
+						g2d.fill(rect);
 					}
 					
-					break;
+					else if(rectX == 320 && rectY == 40) {
+						g2d.setPaint(Color.YELLOW);
+						g2d.fill(rect);
+					}
+					
+					else if(rectX == 280 && rectY >= 40) {
+						g2d.setPaint(Color.YELLOW);
+						g2d.fill(rect);
+					}
+					
+					else {
+						g2d.setPaint(Color.WHITE);
+						g2d.fill(rect);
+					}
+				}
+				
+				else if(rectX >= 360 && rectY >= 240){
+					
+					if(rectY >= 360) {
+						g2d.setPaint(Color.BLUE);
+						g2d.fill(rect);
+					}
+					
+					else if(rectX == 520 && rectY == 320) {
+						g2d.setPaint(Color.BLUE);
+						g2d.fill(rect);
+					}
+					
+					else if(rectX <= 520 && rectY == 280) {
+						g2d.setPaint(Color.BLUE);
+						g2d.fill(rect);
+					}
+					
+					else {
+						g2d.setPaint(Color.WHITE);
+						g2d.fill(rect);
+					}
+				}
+				
+				else {
+					g2d.setPaint(Color.BLACK);
+					g2d.fill(rect);
+				}
 				
 			}
-			
 		}
-		
-		Rectangle2D rtCentral = new Rectangle2D.Double(xOrigin + 240.0, yOrigin + 240.0, 120, 120);
-		g2d.setPaint(Color.BLACK);
-		g2d.fill(rtCentral);
-		
+	
 	}
 }
