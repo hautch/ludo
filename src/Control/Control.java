@@ -10,12 +10,12 @@ import javax.swing.border.EmptyBorder;
 public class Control {
 	
 	public static JFrame frame = new JFrame("Super Ludo");
-	public Board gameBoard = new Board();
+	public static Board gameBoard = new Board();
 	public static JButton diceRoll = new JButton("Jogar dado");
 	public static JLabel diceRollLabel;
 	public static JLabel mouseClickInfo;
 	public final int LARG_DEFAULT = 600;
-	public final int ALT_DEFAULT = 720;
+	public final int ALT_DEFAULT = 670;
 	public static float mouseX;
 	public static float mouseY;
 	
@@ -25,7 +25,8 @@ public class Control {
 		frame.setSize(new Dimension(LARG_DEFAULT, ALT_DEFAULT));
 		frame.setLocationRelativeTo(null);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setResizable(true);
+		frame.setResizable(false);
+		frame.setLayout(new BorderLayout());
 		
 		//Setting up components and event listeners
 		diceRollLabel = new JLabel("Jogue o dado para começar");
@@ -39,10 +40,10 @@ public class Control {
 		gameBoard.addMouseListener(new MouseHandler());
 		
 		//Adding components to main container
-		//gameBoard.add(diceRoll);
-		//gameBoard.add(diceRollLabel);
-		//gameBoard.add(mouseClickInfo);
 		frame.add(gameBoard);
+		gameBoard.add(diceRoll);
+		gameBoard.add(diceRollLabel);
+		gameBoard.add(mouseClickInfo);
 		frame.setVisible(true);
 	}
 
