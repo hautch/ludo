@@ -2,8 +2,14 @@ package Board;
 
 import Board.Casas;
 import Control.Control;
+
 import java.awt.*;
 import java.awt.geom.*;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+
+import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class Board extends JPanel {
@@ -30,7 +36,20 @@ public class Board extends JPanel {
 
 					//Sets main green area
 					if(rectY <= 200) {
-						casas[i][j].setColor(Color.GREEN);
+						
+						if(rectX == 40 || rectX == 160) {
+							if(rectY == 40 || rectY == 160) {
+								casas[i][j].setColor(Color.WHITE);
+							}
+							
+							else {
+								casas[i][j].setColor(Color.GREEN);
+							}
+						}
+						
+						else {
+							casas[i][j].setColor(Color.GREEN);
+						}
 					}
 					
 					//Sets green path
@@ -55,7 +74,20 @@ public class Board extends JPanel {
 
 					//Sets main red area
 					if(rectX <= 200) {
-						casas[i][j].setColor(Color.RED);
+						
+						if(rectX == 40 || rectX == 160) {
+							
+							if(rectY == 400 || rectY == 520) {
+								
+								casas[i][j].setColor(Color.WHITE);
+							}
+							
+							else
+								casas[i][j].setColor(Color.RED);
+						}
+						
+						else
+							casas[i][j].setColor(Color.RED);
 					}
 					
 					//Sets red path
@@ -75,12 +107,25 @@ public class Board extends JPanel {
 					}
 				}
 				
-				else if(rectX >= 200 && rectY <= 200) {
+				else if(rectX >= 240 && rectY <= 200) {
 					
 					//Sets main yellow area
 					if(rectX >= 360) {
-						casas[i][j].setColor(Color.YELLOW);
+						
+						if(rectX == 400 || rectX == 520) {
+							
+							if(rectY == 40 || rectY == 160) {
+								casas[i][j].setColor(Color.WHITE);
+							}
+							
+							else
+								casas[i][j].setColor(Color.YELLOW);
+						}
+						
+						else
+							casas[i][j].setColor(Color.YELLOW);
 					}
+				
 					
 					//Sets yellow path
 					else {
@@ -102,7 +147,19 @@ public class Board extends JPanel {
 					
 					//Sets main blue area
 					if(rectY >= 360) {
-						casas[i][j].setColor(Color.BLUE);
+						
+						if(rectX == 400 || rectX == 520) {
+							
+							if(rectY == 400 || rectY == 520) {
+								casas[i][j].setColor(Color.WHITE);
+							}
+							
+							else
+								casas[i][j].setColor(Color.BLUE);
+							
+						}
+						else 
+							casas[i][j].setColor(Color.BLUE);
 					}
 					
 					//Sets blue path
@@ -141,8 +198,8 @@ public class Board extends JPanel {
 			
 			for(int j = 0; j < 15; j++) {
 				
-				float rectX = casas[i][j].getX();
-				float rectY = casas[i][j].getY();
+				int rectX = casas[i][j].getX();
+				int rectY = casas[i][j].getY();
 				
 				Rectangle2D rect = new Rectangle2D.Double(rectX, rectY + this.yOrigin, 40, 40);
 
@@ -151,7 +208,20 @@ public class Board extends JPanel {
 					//Paints main green area
 					if(rectY <= 200) {
 						g2d.setPaint(casas[i][j].getColor());
-						g2d.fill(rect);
+						
+						if(casas[i][j].getColor() == Color.WHITE) {
+							BufferedImage Pino = null;
+							try {
+								Pino = ImageIO.read(new File("C:\\Users\\c1611418\\Downloads\\164628-200.png"));
+							}
+							catch(IOException e) {}
+							g2d.fill(rect);
+							g2d.drawImage(Pino, rectX, rectY + this.yOrigin, 40, 40, null);
+						}
+						
+						else
+							g2d.fill(rect);
+						
 					}
 					
 					//Paints green path

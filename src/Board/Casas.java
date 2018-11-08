@@ -5,8 +5,8 @@ import java.awt.Color;
 public class Casas {
 	
 	private boolean isOccupied;
-	private float xPos;
-	private float yPos;
+	private int xPos;
+	private int yPos;
 	private Color cor;
 	
 	public Casas(int d, int e) {
@@ -16,12 +16,12 @@ public class Casas {
 		this.isOccupied = false;
 	}
 	
-	public float getX() {
+	public int getX() {
 		
 		return this.xPos;
 	}
 	
-	public float getY() {
+	public int getY() {
 		
 		return this.yPos;
 	}
