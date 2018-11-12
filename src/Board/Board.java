@@ -1,6 +1,7 @@
 package Board;
 
 import Board.Casas;
+import Board.Piece;
 import Control.Control;
 
 import java.awt.*;
@@ -14,6 +15,7 @@ import javax.swing.*;
 
 public class Board extends JPanel {
 	
+	public static Piece pieces[][] = new Piece[4][4];
 	public static Casas casas[][] = new Casas[15][15];
 	//Moves the board down by 50 pxls
 	private int yOrigin = 50;
@@ -21,9 +23,44 @@ public class Board extends JPanel {
 	private String s = "#fcf9ea";
 	private Color backgroundColor = Color.decode(s);
 	
-	//Constructor sets each board piece with the appropriate color and coordinates
+	//Constructor sets each board piece and spot with the appropriate color and coordinates
 	public Board() {
 		
+		//Game pieces setup
+		
+		for(int k = 0; k < 4; k++) {
+			
+			switch(k) {
+			
+			case(0):
+				pieces[0][0] = new Piece(40, 40, Color.GREEN);
+				pieces[0][1] = new Piece(40, 40, Color.GREEN);
+				pieces[0][2] = new Piece(40, 40, Color.GREEN);
+				pieces[0][3] = new Piece(40, 40, Color.GREEN);
+			
+			case(1):
+				pieces[1][0] = new Piece(40, 400, Color.RED);
+				pieces[1][1] = new Piece(40, 520, Color.RED);
+				pieces[1][2] = new Piece(160, 400, Color.RED);
+				pieces[1][3] = new Piece(160, 520, Color.RED);
+				
+			case(2):
+				pieces[2][0] = new Piece(400, 40, Color.YELLOW);
+				pieces[2][1] = new Piece(520, 160, Color.YELLOW);
+				pieces[2][2] = new Piece(400, 40, Color.YELLOW);
+				pieces[2][3] = new Piece(520, 160, Color.YELLOW);
+	
+			case(3):
+				pieces[3][0] = new Piece(400, 400, Color.GREEN);
+				pieces[3][1] = new Piece(520, 400, Color.GREEN);
+				pieces[3][2] = new Piece(400, 520, Color.GREEN);
+				pieces[3][3] = new Piece(520, 520, Color.GREEN);
+				
+			}
+				
+		}
+			
+		//Board setup
 		for (int i = 0; i < 15; i++) {
 			
 			for(int j = 0; j < 15; j++) {
@@ -210,13 +247,13 @@ public class Board extends JPanel {
 						g2d.setPaint(casas[i][j].getColor());
 						
 						if(casas[i][j].getColor() == Color.WHITE) {
-							BufferedImage Pino = null;
+							/*BufferedImage Pino = null;
 							try {
-								Pino = ImageIO.read(new File("C:\\Users\\c1611418\\Downloads\\164628-200.png"));
+								Pino = ImageIO.read(new File("/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/green-piece.png"));
 							}
-							catch(IOException e) {}
+							catch(IOException e) {}*/
 							g2d.fill(rect);
-							g2d.drawImage(Pino, rectX, rectY + this.yOrigin, 40, 40, null);
+							//g2d.drawImage(Pino, rectX, rectY + this.yOrigin, 40, 40, null);
 						}
 						
 						else
@@ -250,7 +287,19 @@ public class Board extends JPanel {
 					//Paints main red area
 					if(rectX <= 200) {
 						g2d.setPaint(casas[i][j].getColor());
-						g2d.fill(rect);	
+						
+						if(casas[i][j].getColor() == Color.WHITE) {
+							BufferedImage Pino = null;
+							try {
+								Pino = ImageIO.read(new File("/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/red-piece.png"));
+							}
+							catch(IOException e) {}
+							g2d.fill(rect);
+							g2d.drawImage(Pino, rectX, rectY + this.yOrigin, 40, 40, null);
+						}
+						
+						else
+							g2d.fill(rect);	
 					}
 					
 					//Paints red path
@@ -278,7 +327,19 @@ public class Board extends JPanel {
 					//Paints main yellow area
 					if(rectX >= 360) {
 						g2d.setPaint(casas[i][j].getColor());
-						g2d.fill(rect);
+						
+						if(casas[i][j].getColor() == Color.WHITE) {
+							BufferedImage Pino = null;
+							try {
+								Pino = ImageIO.read(new File("/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/yellow-piece.png"));
+							}
+							catch(IOException e) {}
+							g2d.fill(rect);
+							g2d.drawImage(Pino, rectX, rectY + this.yOrigin, 40, 40, null);
+						}
+						
+						else
+							g2d.fill(rect);
 					}
 					
 					//Paints yellow path
@@ -305,7 +366,19 @@ public class Board extends JPanel {
 					//Paints main blue area
 					if(rectY >= 360) {
 						g2d.setPaint(casas[i][j].getColor());
-						g2d.fill(rect);
+						
+						if(casas[i][j].getColor() == Color.WHITE) {
+							BufferedImage Pino = null;
+							try {
+								Pino = ImageIO.read(new File("/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/blue-piece.png"));
+							}
+							catch(IOException e) {}
+							g2d.fill(rect);
+							g2d.drawImage(Pino, rectX, rectY + this.yOrigin, 40, 40, null);
+						}
+						
+						else
+							g2d.fill(rect);
 					}
 					
 					//Paints blue path
@@ -335,6 +408,16 @@ public class Board extends JPanel {
 				
 			}
 		}
+		
+		BufferedImage Piece1 = null;
+		try {
+			Piece1 = ImageIO.read(new File("/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/green-piece.png"));
+		}
+		catch(IOException e) {}
+		g2d.drawImage(Piece1, pieces[0][0].getX(), pieces[0][0].getY() + this.yOrigin, 40, 40, null);
+		
+		
+		
 	
 	}
 }
