@@ -17,17 +17,18 @@ public class Board extends JPanel {
 	
 	public static Piece pieces[][] = new Piece[4][4];
 	public static Casas casas[][] = new Casas[15][15];
+	public static Casas casasCaminhaveis[] = new Casas[52];
 	//Moves the board down by 50 pxls
 	private int yOrigin = 50;
 	private int diceRollVal;
 	private String s = "#fcf9ea";
 	private Color backgroundColor = Color.decode(s);
+	private int casasCounter = 0;
 	
 	//Constructor sets each board piece and spot with the appropriate color and coordinates
 	public Board() {
 		
 		//Game pieces setup
-		
 		for(int k = 0; k < 4; k++) {
 			
 			switch(k) {
@@ -101,7 +102,6 @@ public class Board extends JPanel {
 						}
 						
 						else {
-							
 							casas[i][j].setColor(Color.WHITE);
 						}
 					}
@@ -222,9 +222,52 @@ public class Board extends JPanel {
 			}
 			
 		}
+		
+		//Walkable setup
+		for(int i = 0; i < 6; i++) {
+			casasCaminhaveis[casasCounter] = casas[i][6];
+			casasCounter++;
+		}
+		for(int i = 5; i >= 0; i--) {
+			casasCaminhaveis[casasCounter] = casas[6][i];
+			casasCounter++;
+		}
+		casasCaminhaveis[casasCounter] = casas[7][0];
+		casasCounter++;
+		for(int i = 0; i < 6; i++) {
+			casasCaminhaveis[casasCounter] = casas[8][i];
+			casasCounter++;
+		}
+		for(int i = 9; i < 15; i++) {
+			casasCaminhaveis[casasCounter] = casas[i][6];
+			casasCounter++;
+		}
+		casasCaminhaveis[casasCounter] = casas[14][7];
+		casasCounter++;
+		for(int i = 14; i >= 9; i--) {
+			casasCaminhaveis[casasCounter] = casas[i][8];
+			casasCounter++;
+		}
+		for(int i = 9; i < 15; i++) {
+			casasCaminhaveis[casasCounter] = casas[8][i];
+			casasCounter++;
+		}
+		casasCaminhaveis[casasCounter] = casas[7][14];
+		casasCounter++;
+		for(int i = 14; i >= 9; i--) {
+			casasCaminhaveis[casasCounter] = casas[6][i];
+			casasCounter++;
+		}
+		for(int i = 5; i >= 0; i--) {
+			casasCaminhaveis[casasCounter] = casas[i][8];
+			casasCounter++;
+		}
+		casasCaminhaveis[casasCounter] = casas[0][7];
+		casasCounter++;
 	}
 	
 	//The paint method creates the board and repaints it upon game updates
+	//draw + fill para casas com borda
 	public void paintComponent(Graphics g) {
 				
 		super.paintComponent(g);
@@ -264,8 +307,8 @@ public class Board extends JPanel {
 						}
 						
 						else {
-							g2d.setPaint(casas[i][j].getColor());
-							g2d.fill(rect);
+							g2d.setPaint(Color.BLACK);
+							g2d.draw(rect);
 						}
 					}
 				}
@@ -293,8 +336,8 @@ public class Board extends JPanel {
 						}
 						
 						else {
-							g2d.setPaint(casas[i][j].getColor());
-							g2d.fill(rect);
+							g2d.setPaint(Color.BLACK);
+							g2d.draw(rect);
 						}
 					}
 				}
@@ -320,8 +363,8 @@ public class Board extends JPanel {
 						}
 						
 						else {
-							g2d.setPaint(casas[i][j].getColor());
-							g2d.fill(rect);
+							g2d.setPaint(Color.BLACK);
+							g2d.draw(rect);
 						}
 					}
 				}
@@ -347,8 +390,8 @@ public class Board extends JPanel {
 						}
 						
 						else {
-							g2d.setPaint(casas[i][j].getColor());
-							g2d.fill(rect);
+							g2d.setPaint(Color.BLACK);
+							g2d.draw(rect);
 						}
 					}
 				}
@@ -378,7 +421,6 @@ public class Board extends JPanel {
 			else if(i==3)
 				imgPath = "/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/blue-piece.png";
 			
-			System.out.println(imgPath);
 			
 			BufferedImage Piece1 = null;
 			try {
