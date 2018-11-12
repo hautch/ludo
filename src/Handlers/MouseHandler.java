@@ -26,7 +26,7 @@ public class MouseHandler implements MouseListener{
 		Control.mouseClickInfo.setText("Clicou na casa " + "[" + this.indexCasaSelecionadaX + "]" + "[" + this.indexCasaSelecionadaY + "]");
 		System.out.println(this.indexCasaSelecionadaX);
 		System.out.println(this.indexCasaSelecionadaY);
-		Board.pieces[0][0].setCoordinates(casas[this.indexCasaSelecionadaX][this.indexCasaSelecionadaY].getX(), casas[this.indexCasaSelecionadaX][this.indexCasaSelecionadaY].getY());
+		Board.pieces[3][0].setCoordinates(casas[this.indexCasaSelecionadaX][this.indexCasaSelecionadaY].getX(), casas[this.indexCasaSelecionadaX][this.indexCasaSelecionadaY].getY());
 		Control.gameBoard.repaint();;
 		
 		/*this.casaSelecionada = (((int) this.y / 40) * 10) + ((int) this.x / 40);

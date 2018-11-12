@@ -34,9 +34,9 @@ public class Board extends JPanel {
 			
 			case(0):
 				pieces[0][0] = new Piece(40, 40, Color.GREEN);
-				pieces[0][1] = new Piece(40, 40, Color.GREEN);
-				pieces[0][2] = new Piece(40, 40, Color.GREEN);
-				pieces[0][3] = new Piece(40, 40, Color.GREEN);
+				pieces[0][1] = new Piece(40, 160, Color.GREEN);
+				pieces[0][2] = new Piece(160, 40, Color.GREEN);
+				pieces[0][3] = new Piece(160, 160, Color.GREEN);
 			
 			case(1):
 				pieces[1][0] = new Piece(40, 400, Color.RED);
@@ -46,8 +46,8 @@ public class Board extends JPanel {
 				
 			case(2):
 				pieces[2][0] = new Piece(400, 40, Color.YELLOW);
-				pieces[2][1] = new Piece(520, 160, Color.YELLOW);
-				pieces[2][2] = new Piece(400, 40, Color.YELLOW);
+				pieces[2][1] = new Piece(520, 40, Color.YELLOW);
+				pieces[2][2] = new Piece(400, 160, Color.YELLOW);
 				pieces[2][3] = new Piece(520, 160, Color.YELLOW);
 	
 			case(3):
@@ -226,7 +226,7 @@ public class Board extends JPanel {
 	
 	//The paint method creates the board and repaints it upon game updates
 	public void paintComponent(Graphics g) {
-		
+				
 		super.paintComponent(g);
 		this.setBackground(backgroundColor);
 		Graphics2D g2d = (Graphics2D) g;
@@ -246,17 +246,6 @@ public class Board extends JPanel {
 					if(rectY <= 200) {
 						g2d.setPaint(casas[i][j].getColor());
 						
-						if(casas[i][j].getColor() == Color.WHITE) {
-							/*BufferedImage Pino = null;
-							try {
-								Pino = ImageIO.read(new File("/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/green-piece.png"));
-							}
-							catch(IOException e) {}*/
-							g2d.fill(rect);
-							//g2d.drawImage(Pino, rectX, rectY + this.yOrigin, 40, 40, null);
-						}
-						
-						else
 							g2d.fill(rect);
 						
 					}
@@ -287,18 +276,6 @@ public class Board extends JPanel {
 					//Paints main red area
 					if(rectX <= 200) {
 						g2d.setPaint(casas[i][j].getColor());
-						
-						if(casas[i][j].getColor() == Color.WHITE) {
-							BufferedImage Pino = null;
-							try {
-								Pino = ImageIO.read(new File("/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/red-piece.png"));
-							}
-							catch(IOException e) {}
-							g2d.fill(rect);
-							g2d.drawImage(Pino, rectX, rectY + this.yOrigin, 40, 40, null);
-						}
-						
-						else
 							g2d.fill(rect);	
 					}
 					
@@ -327,18 +304,6 @@ public class Board extends JPanel {
 					//Paints main yellow area
 					if(rectX >= 360) {
 						g2d.setPaint(casas[i][j].getColor());
-						
-						if(casas[i][j].getColor() == Color.WHITE) {
-							BufferedImage Pino = null;
-							try {
-								Pino = ImageIO.read(new File("/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/yellow-piece.png"));
-							}
-							catch(IOException e) {}
-							g2d.fill(rect);
-							g2d.drawImage(Pino, rectX, rectY + this.yOrigin, 40, 40, null);
-						}
-						
-						else
 							g2d.fill(rect);
 					}
 					
@@ -366,18 +331,6 @@ public class Board extends JPanel {
 					//Paints main blue area
 					if(rectY >= 360) {
 						g2d.setPaint(casas[i][j].getColor());
-						
-						if(casas[i][j].getColor() == Color.WHITE) {
-							BufferedImage Pino = null;
-							try {
-								Pino = ImageIO.read(new File("/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/blue-piece.png"));
-							}
-							catch(IOException e) {}
-							g2d.fill(rect);
-							g2d.drawImage(Pino, rectX, rectY + this.yOrigin, 40, 40, null);
-						}
-						
-						else
 							g2d.fill(rect);
 					}
 					
@@ -407,17 +360,55 @@ public class Board extends JPanel {
 				}
 				
 			}
+		}	
+		
+		for(int i = 0; i < 4; i++) {
+			
+			String imgPath = null;
+			
+			if(i==0)
+				imgPath = "/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/green-piece.png";
+			
+			else if(i==1)
+				imgPath = "/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/red-piece.png";
+			
+			else if(i==2)
+				imgPath = "/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/yellow-piece.png";
+			
+			else if(i==3)
+				imgPath = "/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/blue-piece.png";
+			
+			System.out.println(imgPath);
+			
+			BufferedImage Piece1 = null;
+			try {
+				Piece1 = ImageIO.read(new File(imgPath));
+			}
+			catch(IOException e) {}
+			g2d.drawImage(Piece1, pieces[i][0].getX(), pieces[i][0].getY() + this.yOrigin, 40, 40, null);
+			
+			BufferedImage Piece2 = null;
+			try {
+				Piece2 = ImageIO.read(new File(imgPath));
+			}
+			catch(IOException e) {}
+			g2d.drawImage(Piece2, pieces[i][1].getX(), pieces[i][1].getY() + this.yOrigin, 40, 40, null);
+			
+			BufferedImage Piece3 = null;
+			try {
+				Piece3 = ImageIO.read(new File(imgPath));
+			}
+			catch(IOException e) {}
+			g2d.drawImage(Piece3, pieces[i][2].getX(), pieces[i][2].getY() + this.yOrigin, 40, 40, null);
+			
+			BufferedImage Piece4 = null;
+			try {
+				Piece4 = ImageIO.read(new File(imgPath));
+			}
+			catch(IOException e) {}
+			g2d.drawImage(Piece4, pieces[i][3].getX(), pieces[i][3].getY() + this.yOrigin, 40, 40, null);
+			
 		}
-		
-		BufferedImage Piece1 = null;
-		try {
-			Piece1 = ImageIO.read(new File("/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/green-piece.png"));
-		}
-		catch(IOException e) {}
-		g2d.drawImage(Piece1, pieces[0][0].getX(), pieces[0][0].getY() + this.yOrigin, 40, 40, null);
-		
-		
-		
 	
 	}
 }
