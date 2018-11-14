@@ -37,7 +37,6 @@ public class Control {
 		mouseClickInfo = new JLabel("Ações do mouse serão exibidas aqui.");
 		
 		diceRoll.addActionListener(new ActionHandler(this));
-		gameBoard.addMouseListener(new MouseHandler());
 		
 		//Adding components to main container
 		frame.add(gameBoard);

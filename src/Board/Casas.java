@@ -8,6 +8,7 @@ public class Casas {
 	private int xPos;
 	private int yPos;
 	private Color cor;
+	private int playerId;
 	
 	public Casas(int d, int e) {
 		
@@ -36,7 +37,20 @@ public class Casas {
 		return this.cor;
 	}
 	
+	public void setPlayerId(int id) {
+		
+		this.playerId = id;
+	}
+	
+	public int getPlayerId() {
+		
+		return this.playerId;
+	}
+	
 	public void setIsOccupied() {
+		
+		if(this.isOccupied)
+			this.playerId = -1;
 		
 		this.isOccupied = !this.isOccupied;
 	}

@@ -29,37 +29,26 @@ public class Board extends JPanel {
 	public Board() {
 		
 		//Game pieces setup
-		for(int k = 0; k < 4; k++) {
-			
-			switch(k) {
-			
-			case(0):
-				pieces[0][0] = new Piece(40, 40, Color.GREEN);
-				pieces[0][1] = new Piece(40, 160, Color.GREEN);
-				pieces[0][2] = new Piece(160, 40, Color.GREEN);
-				pieces[0][3] = new Piece(160, 160, Color.GREEN);
-			
-			case(1):
-				pieces[1][0] = new Piece(40, 400, Color.RED);
-				pieces[1][1] = new Piece(40, 520, Color.RED);
-				pieces[1][2] = new Piece(160, 400, Color.RED);
-				pieces[1][3] = new Piece(160, 520, Color.RED);
-				
-			case(2):
-				pieces[2][0] = new Piece(400, 40, Color.YELLOW);
-				pieces[2][1] = new Piece(520, 40, Color.YELLOW);
-				pieces[2][2] = new Piece(400, 160, Color.YELLOW);
-				pieces[2][3] = new Piece(520, 160, Color.YELLOW);
-	
-			case(3):
-				pieces[3][0] = new Piece(400, 400, Color.GREEN);
-				pieces[3][1] = new Piece(520, 400, Color.GREEN);
-				pieces[3][2] = new Piece(400, 520, Color.GREEN);
-				pieces[3][3] = new Piece(520, 520, Color.GREEN);
-				
-			}
-				
-		}
+		
+		pieces[0][0] = new Piece(40, 240, Color.GREEN);
+		pieces[0][1] = new Piece(40, 160, Color.GREEN);
+		pieces[0][2] = new Piece(160, 40, Color.GREEN);
+		pieces[0][3] = new Piece(160, 160, Color.GREEN);
+		
+		pieces[1][0] = new Piece(320, 40, Color.YELLOW);
+		pieces[1][1] = new Piece(520, 40, Color.YELLOW);
+		pieces[1][2] = new Piece(400, 160, Color.YELLOW);
+		pieces[1][3] = new Piece(520, 160, Color.YELLOW);
+		
+		pieces[2][0] = new Piece(520, 320, Color.BLUE);
+		pieces[2][1] = new Piece(520, 400, Color.BLUE);
+		pieces[2][2] = new Piece(400, 520, Color.BLUE);
+		pieces[2][3] = new Piece(520, 520, Color.BLUE);
+		
+		pieces[3][0] = new Piece(240, 520, Color.RED);
+		pieces[3][1] = new Piece(40, 520, Color.RED);
+		pieces[3][2] = new Piece(160, 400, Color.RED);
+		pieces[3][3] = new Piece(160, 520, Color.RED);
 			
 		//Board setup
 		for (int i = 0; i < 15; i++) {
@@ -95,6 +84,8 @@ public class Board extends JPanel {
 												
 						if(rectX == 40 && rectY == 240) {
 							casas[i][j].setColor(Color.GREEN);
+							casas[i][j].setIsOccupied();
+							casas[i][j].setPlayerId(0);
 						}
 						
 						else if((rectX >= 40 && rectX <= 200) && rectY == 280) {
@@ -132,6 +123,8 @@ public class Board extends JPanel {
 						
 						if(rectX == 240 && rectY == 520) {
 							casas[i][j].setColor(Color.RED);
+							casas[i][j].setIsOccupied();
+							casas[i][j].setPlayerId(3);
 						}
 						
 						else if(rectY <= 520 && rectX == 280) {
@@ -168,6 +161,8 @@ public class Board extends JPanel {
 					else {
 						if(rectX == 320 && rectY == 40) {
 							casas[i][j].setColor(Color.YELLOW);
+							casas[i][j].setIsOccupied();
+							casas[i][j].setPlayerId(1);
 						}
 						
 						else if(rectX == 280 && rectY >= 40) {
@@ -203,6 +198,8 @@ public class Board extends JPanel {
 					else {
 						if(rectX == 520 && rectY == 320) {
 							casas[i][j].setColor(Color.BLUE);
+							casas[i][j].setIsOccupied();
+							casas[i][j].setPlayerId(2);
 						}
 						
 						else if(rectX <= 520 && rectY == 280) {
@@ -410,16 +407,16 @@ public class Board extends JPanel {
 			String imgPath = null;
 			
 			if(i==0)
-				imgPath = "/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/green-piece.png";
+				imgPath = "/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/pieces/green-piece.png";
 			
 			else if(i==1)
-				imgPath = "/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/red-piece.png";
+				imgPath = "/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/pieces/yellow-piece.png";
 			
 			else if(i==2)
-				imgPath = "/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/yellow-piece.png";
+				imgPath = "/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/pieces/blue-piece.png";
 			
 			else if(i==3)
-				imgPath = "/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/blue-piece.png";
+				imgPath = "/Users/rlveiga/eclipse-workspace/SuperLudo/assets/images/pieces/red-piece.png";
 			
 			
 			BufferedImage Piece1 = null;
